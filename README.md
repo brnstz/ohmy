@@ -2,6 +2,8 @@
 
 Go API client for ohmyrockness.com
 
+## godoc 
+
 [![GoDoc](https://godoc.org/github.com/brnstz/ohmy?status.svg)](https://godoc.org/github.com/brnstz/ohmy)
 
 ## Example
