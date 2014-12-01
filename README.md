@@ -1,6 +1,6 @@
 ## ohmy
 
-A Go API client for ohmyrockness.com
+Go API client for ohmyrockness.com
 
 [![GoDoc](https://godoc.org/github.com/brnstz/ohmy?status.svg)](https://godoc.org/github.com/brnstz/ohmy)
 
