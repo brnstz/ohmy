@@ -18,7 +18,7 @@ import (
 )
 
 func main() {
-    shows, err := ohmy.GetShows(100)
+    shows, err := ohmy.GetShows(ohmy.RegionNYC, 100)
 
     if err == nil {
         fmt.Println(shows[0].Venue.Name, shows[0].Bands[0].Name)

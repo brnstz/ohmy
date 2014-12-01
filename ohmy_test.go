@@ -6,8 +6,8 @@ import (
 	"github.com/brnstz/ohmy"
 )
 
-func TestOhyMy(t *testing.T) {
-	shows, err := ohmy.GetShows(101)
+func testRegion(region ohmy.Region, t *testing.T) {
+	shows, err := ohmy.GetShows(region, 101)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -24,4 +24,13 @@ func TestOhyMy(t *testing.T) {
 			t.Fatal("Expected non-nil band list")
 		}
 	}
+
+}
+
+func TestNYC(t *testing.T) {
+	testRegion(ohmy.RegionNYC, t)
+}
+
+func TestLA(t *testing.T) {
+	testRegion(ohmy.RegionLA, t)
 }

@@ -60,6 +60,16 @@ const (
 	authToken = "3b35f8a73dabd5f14b1cac167a14c1f6"
 )
 
+// Region is where the shows are taking place
+type Region int
+
+const (
+	RegionNYC     Region = 1
+	RegionChicago        = 2
+	RegionLA             = 3
+	RegionSXSW           = 5
+)
+
 var (
 	// NoCSRF is a generic error for any problem getting the CSRF token
 	NoCSRF = errors.New("problem getting CSRF token")
@@ -106,7 +116,7 @@ func getIndexData() (csrf string, cookies []*http.Cookie, err error) {
 }
 
 // apiURL returns the full HTTP URL to given the page, etc.
-func apiURL(page, per int) string {
+func apiURL(region Region, page, per int) string {
 	// Combine base and api path to get the URL (minus the query string)
 	u := fmt.Sprint(base, api)
 
@@ -115,19 +125,19 @@ func apiURL(page, per int) string {
 	v.Set("index", "true")
 	v.Set("page", fmt.Sprint(page))
 	v.Set("per", fmt.Sprint(per))
-	v.Set("regioned", fmt.Sprint(regioned))
+	v.Set("regioned", fmt.Sprint(region))
 
 	// Return the full URL
 	fullURL := fmt.Sprint(u, "?", v.Encode())
 	return fullURL
 }
 
-func callAPI(csrf string, cookies []*http.Cookie, page, per int) (shows Shows, err error) {
+func callAPI(csrf string, cookies []*http.Cookie, region Region, page, per int) (shows Shows, err error) {
 	// Create a client so we can modify headers of the request
 	client := &http.Client{}
 
 	// Create a request to modify its headers
-	request, err := http.NewRequest("GET", apiURL(page, per), nil)
+	request, err := http.NewRequest("GET", apiURL(region, page, per), nil)
 
 	// Add authorization to request headers
 	request.Header.Add("X-CSRF-Token", csrf)
@@ -168,7 +178,7 @@ func callAPI(csrf string, cookies []*http.Cookie, page, per int) (shows Shows, e
 
 // GetShows will get at most n number of shows (if less than n available,
 // will give the most available)
-func GetShows(n int) (allShows Shows, err error) {
+func GetShows(region Region, n int) (allShows Shows, err error) {
 	// Get the data we need to call the API
 	csrf, cookies, err := getIndexData()
 	if err != nil {
@@ -196,7 +206,7 @@ func GetShows(n int) (allShows Shows, err error) {
 		}
 
 		// Get shows for this page
-		shows, callErr := callAPI(csrf, cookies, page, per)
+		shows, callErr := callAPI(csrf, cookies, region, page, per)
 		if callErr != nil {
 			err = callErr
 			return
