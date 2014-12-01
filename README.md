@@ -1,3 +1,4 @@
+[![GoDoc](https://godoc.org/github.com/brnstz/ohmy?status.svg)](https://godoc.org/github.com/brnstz/ohmy)
 
 ```go
 package main
