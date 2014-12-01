@@ -211,8 +211,10 @@ func GetShows(n int) (allShows Shows, err error) {
 	}
 
 	// It seems that the API doesn't actually listen to the per value, so
-	// limit the returned shows here.
-	allShows = allShows[0:origN]
+	// limit the returned shows when we have greater than what was requested.
+	if origN < len(allShows) {
+		allShows = allShows[0:origN]
+	}
 
 	return
 }
