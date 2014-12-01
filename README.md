@@ -1,16 +1,17 @@
-Look at the GoDoc
-=================
+## ohmy
+
+A Go API client for ohmyrockness.com
 
 [![GoDoc](https://godoc.org/github.com/brnstz/ohmy?status.svg)](https://godoc.org/github.com/brnstz/ohmy)
 
-Or here's an example
-====================
+## Example
 
 ```go
 package main
 
 import (
     "fmt"
+
     "github.com/brnstz/ohmy"
 )
 
