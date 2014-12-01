@@ -1,8 +1,10 @@
-== Look at the GoDoc ==
+Look at the GoDoc
+=================
 
 [![GoDoc](https://godoc.org/github.com/brnstz/ohmy?status.svg)](https://godoc.org/github.com/brnstz/ohmy)
 
-== Or here's an example == 
+Or here's an example
+====================
 
 ```go
 package main
