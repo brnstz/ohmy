@@ -16,13 +16,13 @@ import (
 
 // Shows is an array of shows, the response we get from the ohmyrockness
 // API
-type Shows []*Show
+type Shows []Show
 
 // Show is a list of bands, a venue and some other info. Not everything
 // returned in the API is included here.
 type Show struct {
-	Bands  []*Band `json:"cached_bands"`
-	Venue  *Venue
+	Bands  []Band `json:"cached_bands"`
+	Venue  Venue
 	Starts *time.Time `json:"starts_at"`
 }
 
